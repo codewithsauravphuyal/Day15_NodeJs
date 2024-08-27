@@ -4,6 +4,7 @@ const makeBlogTable = require('./blogModel')
 const makeUserTable = require('./userModel')
 
 
+
 const sequelize = new Sequelize(databaseConfig.db,databaseConfig.username,databaseConfig.password,{
     host : databaseConfig.host, 
     port : databaseConfig.port, 
