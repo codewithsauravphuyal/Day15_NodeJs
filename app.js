@@ -18,10 +18,41 @@ app.get("/create", (req, res) => {
     res.render("create")
 })
 
+app.get("/blog/:id",async (req,res)=>{
+    const id = req.params.id
+    const blog =  await blogs.findByPk(id) // returns object 
+    res.render("singleBlog.ejs",{blog : blog})
+})
+
+app.get("/delete/:id",async (req,res)=>{
+    const id = req.params.id
+    await blogs.destroy({
+        where : {
+            id : id
+        }
+    })
+    res.redirect("/")
+})
+
+
+app.get("/", async (req, res) => {
+    try {
+      const datas = await blogs.findAll() //select * from Blogs returns array
+      res.render("home", { blogs: datas })
+    } catch (error) {
+      console.error(error)
+      res.status(500).send("Error fetching blogs")
+    }
+  })
+
 // Upload blog image
 app.post('/create', upload.single('image'), async (req, res) => {
+    // const title = req.body.title
+    // const subtitle = req.body.title
+    // const description = req.body.description
     const { title, subtitle, description } = req.body
-
+    console.log(req.file)
+    const filename = req.file.filename
     await blogs.create({
         title: title,
         subtitle: subtitle,
@@ -43,6 +74,7 @@ app.post('/create', upload.single('image'), async (req, res) => {
 // });
 
 app.use(express.static('public/css/'))
+app.use(express.static('storage'));
 
 app.listen(3000, () => {
     console.log('server is running on port 3000')

@@ -9,7 +9,7 @@ const sequelize = new Sequelize(databaseConfig.db,databaseConfig.username,databa
     host : databaseConfig.host, 
     port : databaseConfig.port, 
     dialect : databaseConfig.dialect, 
-    operatorsAliases : false, 
+    // operatorsAliases : false, 
     pool : {
         max : 5, 
         min : 0, 
