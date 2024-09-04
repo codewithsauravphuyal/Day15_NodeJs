@@ -1,0 +1,21 @@
+<!-- Navbar -->
+<%- include ('./navbar.ejs') %>
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <h2>Login User</h2>
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="Email">Email:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="Password">Password:</label>
+                <input type="text" id="password" name="password" required>
+            </div>
+            <button type="submit" class="submit-btn">Login</button>
+        </form>
+    </div>
+    </body>
+
+    </html>

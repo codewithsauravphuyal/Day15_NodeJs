@@ -1,35 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
-
-<body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">My Website</div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+<!-- Navbar -->
+<%- include ('./navbar.ejs') %>
 
     <!-- Card Section -->
-<div class="card-container">
-    <div class="card">
-      <img src="/<%= blog.image %>" alt="Card Image">
-      <div class="card-title"><%= blog.title %></div>
-      <p><%= blog.subtitle %></p>
-      <p><%= blog.description %></p>
-      <a href="/delete/<%- blog.id %>" class="delete-button">Delete Me</a>
+    <div class="card-container">
+        <div class="card">
+            <img src="/<%= blog.image %>" alt="Card Image">
+            <div class="card-title">
+                <%= blog.title %>
+            </div>
+            <p>
+                <%= blog.subtitle %>
+            </p>
+            <p>
+                <%= blog.description %>
+            </p>
+            <a href="/delete/<%- blog.id %>" class="delete-button">Delete Me</a>
+        </div>
     </div>
-  </div>
-</body>
+    </body>
 
-</html>
+    </html>
