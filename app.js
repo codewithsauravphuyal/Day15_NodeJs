@@ -1,7 +1,6 @@
 require('dotenv').config()
 const express = require('express')
 const { blogs, sequelize, users } = require('./model/index')
-const bcrypt = require("bcrypt")
 const { homePage, singleBlog, deleteBlog, createForm, createBlog } = require('./controller/blogController')
 const { registerUser, loginUser, renderRegister, renderLogin } = require('./controller/authController')
 
