@@ -6,8 +6,6 @@ const blogRoute = require("./routes/blogRoute"); // Blog routes
 const authRoute = require("./routes/authRoute"); // Auth routes
 
 const app = express()
-const blogRoute = require("./routes/blogRoute")
-const authRoute = require("./routes/authRoute")
 
 // Set view engine to EJS for rendering templates
 app.set('view engine', 'ejs')
