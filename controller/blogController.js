@@ -1,4 +1,10 @@
 const { blogs } = require('../model/index');
+const path = require('path');
+const express = require('express');
+const app = express();
+
+// Serve files from the 'public' directory
+app.use(express.static('public'));
 
 exports.homePage = async (req, res) => {
     const datas = await blogs.findAll() // select * from blogs returns array 
@@ -27,16 +33,12 @@ exports.createForm = (req, res) => {
 }
 
 exports.createBlog = async (req,res)=>{
-    // const title = req.body.title 
-    // const subtitle = req.body.subtitle 
-    // const description = req.body.description
- let filename; 
- if(req.file){
-    file = req.file.filename
- }else{
-    filename = "http://example.com/a.png"
- }
-//    const filename = req.file.filename
+    let filename; 
+    if(req.file){
+       filename = req.file.filename
+    }else{
+       filename = "default-image.png" // or any other default image filename
+    }
     const {title,subtitle,description} = req.body 
    await blogs.create({
         title : title,
