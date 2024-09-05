@@ -1,13 +1,17 @@
 const multer = require('multer');
+const path = require('path');
 
+// Multer storage configuration
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './public/uploads');
+        cb(null, path.join(__dirname, '../storage')); // Ensure storage directory exists
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname);
+        cb(null, Date.now() + '-' + file.originalname); // Append timestamp to avoid name conflicts
     }
 });
+
+
 // const storage2 = multer.diskStorage({
 //     destination: (req, file, cb) => {
 //         cb(null, './storage/banner');

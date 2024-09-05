@@ -1,19 +1,16 @@
-const { homePage, createForm, createBlog, singleBlog, deleteBlog } = require('../controller/blogController')
+const { homePage, createForm, createBlog, singleBlog, deleteBlog } = require('../controller/blogController');
+const router = require('express').Router();
+const { multer, storage } = require('../middleware/multerConfig'); // Assuming correct path to multerConfig
 
-const router = require('express').Router()
-const { multer, storage } = require('../middleware/multerConfig')
-// const {multer, storage, storage2, storage3} = require('./middleware/multerConfig')
-const upload = multer({ storage: storage }) // for blog images
-// const uploadBanner = multer({ storage: storage2 }) // for banner images
-// const uploadUser = multer({ storage: storage3 }) // for user images
+// Set up multer for blog images
+const upload = multer({ storage: storage }); // for blog images
 
-router.route("/").get(homePage)
-router.route("/blog/:id").get(singleBlog)
-router.route("/delete/:id").get(deleteBlog)
-router.route("/create").get(createForm).post(upload.single('image'), createBlog)
+// Routes
+router.route("/").get(homePage); // Display homepage
+router.route("/blog/:id").get(singleBlog); // Display a single blog post
+router.route("/delete/:id").get(deleteBlog); // Delete a blog post
+router.route("/create")
+    .get(createForm) // Display form for creating blog post
+    .post(upload.single('image'), createBlog); // Handle blog creation with image upload
 
-
-
-
-
-module.exports = router 
+module.exports = router;
