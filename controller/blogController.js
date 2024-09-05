@@ -26,19 +26,24 @@ exports.createForm = (req, res) => {
 
 }
 
-exports.createBlog = async (req, res) => {
+exports.createBlog = async (req,res)=>{
     // const title = req.body.title 
     // const subtitle = req.body.subtitle 
     // const description = req.body.description
-
-    const filename = req.file.filename
-    const { title, subtitle, description } = req.body
-    await blogs.create({
-        title: title,
-        subtitle: subtitle,
-        description: description,
-        image: filename
-
+ let filename; 
+ if(req.file){
+    file = req.file.filename
+ }else{
+    filename = "http://example.com/a.png"
+ }
+//    const filename = req.file.filename
+    const {title,subtitle,description} = req.body 
+   await blogs.create({
+        title : title,
+        subtitle : subtitle, 
+        description : description, 
+        image : filename
+       
     })
     res.send("Blog added successfully")
 
